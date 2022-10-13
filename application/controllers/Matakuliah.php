@@ -1,6 +1,11 @@
 <?php
 class Matakuliah extends CI_Controller
 {
+    function __construct()
+    {
+        parent::__construct();
+        $this->load->library('form_validation');
+    }
     public function index()
     {
         $this->load->view('form-matakuliah');
@@ -18,6 +23,10 @@ class Matakuliah extends CI_Controller
         [
             'required' => 'Nama Matakuliah Harus diisi',
             'min_lenght' => 'Nama terlalu pendek'
+        ]);
+        $this->form_validation->set_rules('sks', 'Sks Matakuliah','required',
+        [
+            'required' => 'Sks Matakuliah Harus diisi',
         ]);
         $data = [
                     'kode' => $this->input->post('kode'),
